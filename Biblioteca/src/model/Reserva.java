@@ -7,11 +7,19 @@ public class Reserva {
     private Date dataReserva;
     private int idUsuario;
 
+    // Construtores
+    public Reserva(int idReserva, Date dataReserva, int idUsuario) {
+        this.idReserva = idReserva;
+        this.dataReserva = dataReserva;
+        this.idUsuario = idUsuario;
+    }
+
     public Reserva(Date dataReserva, int idUsuario) {
         this.dataReserva = dataReserva;
         this.idUsuario = idUsuario;
     }
 
+    // Getters e Setters
     public int getIdReserva() {
         return idReserva;
     }

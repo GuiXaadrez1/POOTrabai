@@ -1,42 +1,37 @@
 package view;
 
+import javax.swing.*;
+
 import controller.ReservaController;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TelaReserva extends JFrame {
-    private final JTextField txtDataReserva;
-    private final JTextField txtIdUsuario;
-    private final JButton btnSalvar;
+public class TelaReserva extends JPanel {
+
+    private JTextField txtDataReserva;
+    private JTextField txtIdUsuario;
+    private JButton btnSalvar;
 
     public TelaReserva() {
-        setTitle("Cadastro de Reserva");
-        setSize(400, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(3, 2));
 
         JLabel lblDataReserva = new JLabel("Data da Reserva (YYYY-MM-DD):");
         txtDataReserva = new JTextField();
-
+        
         JLabel lblIdUsuario = new JLabel("ID do Usuário:");
         txtIdUsuario = new JTextField();
-
+        
         btnSalvar = new JButton("Salvar");
+
         btnSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String dataReserva = txtDataReserva.getText();
                 try {
                     int idUsuario = Integer.parseInt(txtIdUsuario.getText());
-
+                    // Chamando o controller para salvar a reserva
                     ReservaController controller = new ReservaController();
                     boolean sucesso = controller.cadastrarReserva(dataReserva, idUsuario);
 
@@ -55,14 +50,7 @@ public class TelaReserva extends JFrame {
         add(txtDataReserva);
         add(lblIdUsuario);
         add(txtIdUsuario);
-        add(new JLabel());
+        add(new JLabel()); // Espaço em branco
         add(btnSalvar);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            TelaReserva tela = new TelaReserva();
-            tela.setVisible(true);
-        });
     }
 }
